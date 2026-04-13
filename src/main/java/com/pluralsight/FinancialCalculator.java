@@ -1,5 +1,5 @@
 package com.pluralsight;
-import java.util.Scanner;
+import java.util.*;
 
 public class FinancialCalculator {
     private static String system;
@@ -29,5 +29,23 @@ public class FinancialCalculator {
             System.out.printf("Your monthly payment is %.2f\n", monthlyPayment);
             System.out.printf("Your total interest is %.2f\n", totalInterest);
         }
+        else if (calcNumber == 2) {
+            System.out.print("How much will you deposit? ");
+            double numDeposit = calcScanner.nextDouble();
+            System.out.print("What is the interest rate? ");
+            double yearlyInterest = calcScanner.nextDouble();
+            System.out.println("How many years for it to mature? ");
+            int numYears = calcScanner.nextInt();
+            yearlyInterest /= 100;
+            yearlyInterest /= 365;
+            int numDaysInYears = numYears * 365;
+
+            double futureValue = numDeposit * Math.pow(1 + yearlyInterest, numDaysInYears);
+            double totalInterest2 = futureValue - numDeposit;
+
+            System.out.printf("Your matured balance is: %.2f\n", futureValue);
+            System.out.printf("Your total interest earned is: %.2f\n", totalInterest2);
+        }
+
     }
 }
