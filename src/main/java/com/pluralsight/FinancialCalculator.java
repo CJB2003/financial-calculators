@@ -66,15 +66,19 @@ public class FinancialCalculator {
             //Asks for length of annuity, annual interest rate, amount paid each period
             System.out.print("Enter how much you pay per period: ");
             double paymentAmount = calcScanner.nextDouble();
+            //Realized the numbers weren't right and read the prompt again, gotta convert it to annual rate to monthly
             System.out.print("Enter your annual interest rate: ");
             double intRate = calcScanner.nextDouble();
+            //Same thing for length of annuity, convert to monthly
             System.out.print("Enter the length of the annuity: ");
             int annuityLength = calcScanner.nextInt();
 
             intRate /= 100;
+            double monthlyIntRate = intRate / 12;
+            int totalMonths = annuityLength * 12;
 
             //Formula for present value of ordinary annuity that I found on google
-            double presentValue = paymentAmount * (1 - Math.pow(1 + intRate, -annuityLength)) / intRate;
+            double presentValue = paymentAmount * (1 - Math.pow(1 + monthlyIntRate, -totalMonths)) / monthlyIntRate;
 
             //prints present value
             System.out.printf("The present value of your annuity is: %.2f", presentValue);
